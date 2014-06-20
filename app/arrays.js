@@ -82,22 +82,20 @@ define(function() {
     },
 
     duplicates : function(arr) {
-        var b = [];
-        var dupe;
-        var check;
-          
-        for (var i=0; i<arr.length-1; i++) {
-          dupe = false;
-          for (var j=i+1; j< arr.length; j++) {
-            if (arr[i] == arr[j]) {
-              dupe = true;
-              arr.splice(j,1);
-              j--;
-            }
-          }
-          if (dupe) { b.push(arr[i]);}
-        }    
-        return b;
+      var a = [];
+      var b = {};
+
+      for (var i = 0; i< arr.length; i++) {
+        b[arr[i]] = (b[arr[i]] > 0) ? b[arr[i]] += 1 : b[arr[i]] = 1;
+      }
+      
+      for (var lab in b) {
+        if (b[lab] > 1) {
+          a.push(lab);
+        }
+      }
+      
+      return a;
     },
 
     square : function(arr) {
